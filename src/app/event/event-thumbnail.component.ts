@@ -5,23 +5,26 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   template: ` <div class="well hoverwell thumbnail">
     <h2>{{event.name}}</h2>
     <div>Date: {{event.date}}</div>
-    <div>Heure: {{event.time}}</div>
+    <div [ngSwitch]="event?.time">
+      Heure: {{event?.time}}
+      <span *ngSwitchCase="'8:00 AM'">(Début tôt)</span>
+      <span *ngSwitchCase="'10:00 AM'">(Début tardif)</span>
+      <span *ngSwitchDefault>(Début normal)</span>
+    </div>
     <div>Prix: \${{event.price}}</div>
-    <div>
+    <div *ngIf="event?.location">
       <span>Adresse: {{event.location.address}}</span>
       <span>&nbsp;</span>
       <span>{{event.location.city}}, {{event.location.country}}</span>
     </div>
-    <button class="btn btn-primary" (click)="handleClickMe()">Cliquez !</button>
+    <div *ngIf="event?.onlineURL">
+      URL: {{event.onlineURL}}
+    </div>
   </div>`
 })
 
 export class EventThumbnailComponent {
  @Input() event: any;
 
-  @Output() eventClick = new EventEmitter();
 
-  handleClickMe() {
-   this.eventClick.emit(this.event.name);
-  }
 }
