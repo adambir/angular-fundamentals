@@ -11,6 +11,10 @@ import {EventDetailComponent} from './event/event-detail/event-detail.component'
 import {RouterModule} from '@angular/router';
 import {appRoutes} from './routes';
 import {CreateEventComponent} from './event/shared/create-event.component';
+import {ErrorComponent} from './errors/404.component';
+import {EventRouteActivatorService} from './event/event-detail/event-route-activator.service';
+import {EventListResolver} from './event/event-list-resolver.service';
+import {UserModule} from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,8 @@ import {CreateEventComponent} from './event/shared/create-event.component';
     EventThumbnailComponent,
     NavbarComponent,
     EventDetailComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,9 @@ import {CreateEventComponent} from './event/shared/create-event.component';
   ],
   providers: [
     EventService,
-    ToastrService
+    ToastrService,
+    EventRouteActivatorService,
+    EventListResolver
   ],
   bootstrap: [EventAppComponent]
 })
