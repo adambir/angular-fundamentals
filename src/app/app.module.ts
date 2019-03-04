@@ -15,6 +15,7 @@ import {ErrorComponent} from './errors/404.component';
 import {EventRouteActivatorService} from './event/event-detail/event-route-activator.service';
 import {EventListResolver} from './event/event-list-resolver.service';
 import {UserModule} from './user/user.module';
+import {AuthService} from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {UserModule} from './user/user.module';
     EventService,
     ToastrService,
     EventRouteActivatorService,
-    EventListResolver
+    EventListResolver,
+    AuthService
   ],
   bootstrap: [EventAppComponent]
 })
